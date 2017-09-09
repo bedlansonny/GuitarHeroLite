@@ -25,7 +25,7 @@ public class GuitarHeroLite {
 
             // check if the user has typed a key, and, if so, process it
             if (StdDraw.hasNextKeyTyped()) {
- 
+
                 // the user types this character
                 char key = StdDraw.nextKeyTyped();
 
