@@ -18,6 +18,9 @@ public class GuitarString
 
     public void pluck()
     {
+        //empty the queue first
+        queue = new RingBuffer(queue.capacity());
+
         while(!queue.isFull())
         {
             queue.enqueue(Math.random()-.5);
@@ -33,7 +36,7 @@ public class GuitarString
         queue.enqueue(result);
 
         //testing
-        System.out.println(queue);
+        //System.out.println(queue);
     }
 
     public double sample()

@@ -72,7 +72,7 @@ public class RingBuffer
 
     public boolean isFull()
     {
-        System.out.println("isFull() printing: \n" + toString());
+        //System.out.println("isFull() printing: \n" + toString());
         return size == arr.length;
         //return (front == 0 && back == arr.length-1) || (back == front - 1);
     }
@@ -95,6 +95,11 @@ public class RingBuffer
     public int size()
     {
         return size;
+    }
+
+    public int capacity()
+    {
+        return arr.length;
     }
 
     public String toString()
