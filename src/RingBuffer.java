@@ -9,7 +9,7 @@ public class RingBuffer
     {
         arr = new double[size];
         front = -1;
-        back = -1;
+        back = -1; //back is not necessary. When enqueueing, back == (front + size) % capacity
         size = 0;
     }
 
