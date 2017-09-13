@@ -30,7 +30,8 @@ import javax.sound.sampled.*;
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
-public final class StdAudio {
+public final class
+StdAudio {
 
     /**
      *  The sample rate - 44,100 Hz for CD quality audio.

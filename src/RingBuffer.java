@@ -33,7 +33,8 @@ public class RingBuffer
             arr[back] = value;
         }
         else
-            System.out.println("enqueue ERROR: RingBuffer is full.\n" + toString());
+            //System.out.println("enqueue ERROR: RingBuffer is full.\n" + toString());
+            System.out.print("");
 
     }
 
@@ -60,7 +61,7 @@ public class RingBuffer
         }
         else
         {
-            System.out.println("dequeue ERROR: RingBuffer is empty.\n" + toString());
+            //System.out.println("dequeue ERROR: RingBuffer is empty.\n" + toString());
             return 0;
         }
     }
@@ -86,7 +87,7 @@ public class RingBuffer
         }
         else
         {
-            System.out.println("peek ERROR: RingBuffer is empty.\n" + toString());
+            //System.out.println("peek ERROR: RingBuffer is empty.\n" + toString());
             return 0;
         }
     }

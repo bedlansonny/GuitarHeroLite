@@ -14,7 +14,7 @@ public class GuitarHero
         {
             strings[i] = new GuitarString(CONCERT_A * Math.pow(1.05956, i-24));
         }
-        char[] keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ".toCharArray();
+        String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
 
         // the main input loop
         while (true) {
@@ -26,6 +26,12 @@ public class GuitarHero
                 char key = StdDraw.nextKeyTyped();
 
                 // pluck the corresponding string
+                if(keyboard.contains(Character.toString(key)))
+                {
+                    strings[keyboard.indexOf(key)].pluck();
+                }
+
+                /*
                 if (key == 'a')
                 {
                     stringA.pluck();
@@ -34,10 +40,11 @@ public class GuitarHero
                 {
                     stringC.pluck();
                 }
+                */
             }
 
             // compute the superposition of the samples
-            double sample = stringA.sample() + stringC.sample();
+            //double sample = stringA.sample() + stringC.sample();
 
             double sample2 = 0;
             for(GuitarString str : strings)
@@ -46,11 +53,16 @@ public class GuitarHero
             }
 
             // send the result to standard audio
-            StdAudio.play(sample);
+            StdAudio.play(sample2);
 
             // advance the simulation of each guitar string by one step
-            stringA.tic();
-            stringC.tic();
+            for(GuitarString str : strings)
+            {
+                str.tic();
+            }
+
+            //stringA.tic();
+            //stringC.tic();
         }
     }
 
