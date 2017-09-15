@@ -49,7 +49,7 @@ public class PianoString
         }
         else
         {
-            result = n1;
+            result = n1*.999999;
         }
 
         queue.enqueue(result);

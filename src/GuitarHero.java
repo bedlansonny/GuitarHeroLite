@@ -1,13 +1,12 @@
+import java.util.*;
+
 public class GuitarHero
 {
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
 
         // Create two guitar strings, for concert A and C
         double CONCERT_A = 440.0;
-        double CONCERT_C = CONCERT_A * Math.pow(2, 3.0 / 12.0);
-        GuitarString stringA = new GuitarString(CONCERT_A);
-        GuitarString stringC = new GuitarString(CONCERT_C);
-
 
         GuitarString[] strings = new GuitarString[37];
         for (int i = 0; i < 37; i++)
@@ -16,8 +15,32 @@ public class GuitarHero
         }
         String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
 
+        ArrayList<Character> playedNotes = new ArrayList<>();
+        ArrayList<Integer> playedTimes = new ArrayList<>();
+        int timestamp = 0;
+        boolean recording = false;
+        boolean playing = false;
+
         // the main input loop
-        while (true) {
+        while (true)
+        {
+            if(recording)
+            {
+                timestamp++;
+            }
+
+
+            if(playing)     //plays all the notes at once
+            {
+
+                for(int i = 0; i < playedTimes.get(playedTimes.size()-1); i++)
+                {
+                    if(playedTimes.contains(i))
+                    {
+                        strings[keyboard.indexOf(playedNotes.get(playedTimes.indexOf(new Integer(i))))].pluck();
+                    }
+                }
+            }
 
             // check if the user has typed a key, and, if so, process it
             if (StdDraw.hasNextKeyTyped()) {
@@ -29,23 +52,27 @@ public class GuitarHero
                 if(keyboard.contains(Character.toString(key)))
                 {
                     strings[keyboard.indexOf(key)].pluck();
+
+                    if(recording)
+                    {
+                        playedNotes.add(key);
+                        playedTimes.add(timestamp);
+                    }
                 }
 
-                /*
-                if (key == 'a')
+                if(key == '`')
                 {
-                    stringA.pluck();
+                    recording = !recording;
                 }
-                if (key == 'c')
+
+                if(key == '~')
                 {
-                    stringC.pluck();
+                    playing = !playing;
                 }
-                */
+
             }
 
             // compute the superposition of the samples
-            //double sample = stringA.sample() + stringC.sample();
-
             double sample2 = 0;
             for(GuitarString str : strings)
             {
@@ -61,8 +88,6 @@ public class GuitarHero
                 str.tic();
             }
 
-            //stringA.tic();
-            //stringC.tic();
         }
     }
 
