@@ -18,6 +18,7 @@ public class GuitarHero
         ArrayList<Character> playedNotes = new ArrayList<>();
         ArrayList<Integer> playedTimes = new ArrayList<>();
         int timestamp = 0;
+        int playstamp = 0;
         boolean recording = false;
         boolean playing = false;
 
@@ -29,7 +30,22 @@ public class GuitarHero
                 timestamp++;
             }
 
+            if(playing)
+            {
+                playstamp++;
 
+                if(playedTimes.contains(playstamp))
+                {
+                    strings[keyboard.indexOf(playedNotes.get(playedTimes.indexOf(new Integer(playstamp))))].pluck();
+                }
+
+                if(playstamp ==  playedTimes.get(playedTimes.size()-1))
+                {
+                    playing = !playing;
+                }
+            }
+
+            /*
             if(playing)     //plays all the notes at once
             {
 
@@ -41,6 +57,7 @@ public class GuitarHero
                     }
                 }
             }
+            */
 
             // check if the user has typed a key, and, if so, process it
             if (StdDraw.hasNextKeyTyped()) {
